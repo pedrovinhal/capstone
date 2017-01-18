@@ -1,0 +1,95 @@
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a ui-sref="app">Classes</a></li>                    
+    <li><a ui-sref="app">{{team.name}}</a></li>                    
+    <li class="active">Dashboard</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Totals {{team.name}}</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>.</th>
+                                <th>AB</th>
+                                <th>LA</th>
+                                <th>MA</th>
+                                <th>BH</th>
+                                <th>SR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="subject in team.subjects">
+                                <td>{{subject.subject.name}}</td>
+                                <td>{{subject.reportSums.AB}}</td>
+                                <td>{{subject.reportSums.LA}}</td>
+                                <td>{{subject.reportSums.MA}}</td>
+                                <td>{{subject.reportSums.BH}}</td>
+                                <td>{{subject.reportSums.SR}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><strong>total</strong></td>
+                                <td>{{team.totalSums.AB}}</td>
+                                <td>{{team.totalSums.LA}}</td>
+                                <td>{{team.totalSums.MA}}</td>
+                                <td>{{team.totalSums.BH}}</td>
+                                <td>{{team.totalSums.SR}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-8">
+            <!-- START STRIPED TABLE SAMPLE -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Report {{team.name}}</h3>
+                    <button class="btn btn-default btn-sm pull-right" ng-click="filterFn()"><span class="glyphicon glyphicon-filter"></span></button>
+                </div>
+                
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr ng-show="showFilter">
+                                <th>Hour</th>
+                                <th><input class="form-control input-sm" type="text" ng-model="subjectFilter" size="2" placeholder="Subject"></th>
+                                <th><input class="form-control input-sm" type="text" ng-model="studentFilter" size="2" placeholder="Student"></th>
+                                <th><input class="form-control input-sm" type="text" ng-model="typeFilter" size="2" placeholder="Type"></th>
+                                <th>Description</th>
+                            </tr>
+                            <tr ng-show="!showFilter">
+                                <th>Hour</th>
+                                <th>Subject</th>
+                                <th>Student</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="report in team.reports | orderBy: '-createdAt' | filter: {subject: subjectFilter, student: studentFilter, type: typeFilter}">
+                                <td>{{report.hour}}</td>
+                                <td>{{report.subject}}</td>
+                                <td>{{report.student}}</td>
+                                <td>{{report.type}}</td>
+                                <td>{{report.description}}</td>
+                            </tr>
+                        </tbody>
+                    </table>                                
+                </div>
+            </div>
+            <!-- END STRIPED TABLE SAMPLE -->
+        </div>
+    </div>
+</div>
+    

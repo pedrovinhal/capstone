@@ -1,0 +1,71 @@
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a ui-sref="app">Classes</a></li>                    
+    <li><a ui-sref="app">{{lesson.team.name}}</a></li>                    
+    <li class="active">Lesson</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <!-- PAGE TITLE -->
+    <div class="page-title">                    
+        <h2><span></span>Lesson <small>Subject: {{lesson.subject.name}} - Class: {{lesson.team.name}}</small></h2>
+        <button class="btn btn-primary pull-right" ng-click="saveFn()" ng-disabled="lesson.pristine == false"><span class="fa fa-save"></span> Save</button>
+    </div>
+    <!-- END PAGE TITLE -->
+    
+    <div class="row">
+        <div class="col-md-3" ng-repeat="attendance in lesson.attendances | orderBy: 'student.id.number'">
+            <div class="widget widget-default widget-item-icon">                            
+                <div class="widget-item-left">
+                    <img ng-src="{{attendance.student.id.foto | defaultUser: './../images/avatar.jpg'}}" alt="" class="img-circle" width="40px">
+                </div>
+                <div class="widget-data">
+                    <div class="col-xs-6">
+                        <p></p>
+                        <div class="widget-subtitle">{{attendance.student.name}}</div>
+                        <div class="widget-subtitle">nº {{attendance.student.id.number}}</div>  
+                    </div>
+                    <div class="col-xs-6">
+                        <p>
+                            AB: <b> {{attendance.student.id.totalSums.AB}}</b>&nbsp;
+                        </p>
+                        <p>
+                            LA: <b class="font-14"> {{attendance.student.id.totalSums.LA}}</b>&nbsp;
+                            MA: <b class="font-14"> {{attendance.student.id.totalSums.MA}}</b>
+                        </p>
+                        <P>
+                            BH: <b class="font-14"> {{attendance.student.id.totalSums.BH}}</b>&nbsp;
+                            SR: <b class="font-14"> {{attendance.student.id.totalSums.SR}}</b>
+                        </p>
+                    </div>
+                                                    
+                </div>                            
+                <div class="widget-buttons widget-c4">
+                    <div class="col">
+                        <a ui-sref="app.student_dashboard({id: attendance.student.id._id})"><span class="fa fa-user icons-team"></span></a>
+                    </div>
+                    <div class="col">
+                        <a href="" ng-click="openDialog(attendance, lesson)"><span class="fa fa-warning icons-team"></span></a>
+                    </div>
+                    <div class="col">
+                        <label class="switch switch-small">
+                            <small>Present</small>
+                            <input type="checkbox" class="switch" value="1" ng-model="attendance.present" ng-change="changeLate(attendance)"/> 
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="col">
+                        <label class="switch switch-small">
+                            <small>Late</small>
+                            <input type="checkbox" class="switch" value="1" ng-model="attendance.late" ng-change="changePresent(attendance)"/>
+                            <span></span>
+                        </label>
+                    </div>
+                </div>                             
+            </div>
+        </div>
+    </div>
+</div>

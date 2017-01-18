@@ -1,0 +1,66 @@
+<div class="ngdialog-message">
+    <h2 class="panel-title" style="padding-top: 10px; padding-bottom: 5px; text-align: center;">NEW REPORT</h2>
+    <hr/>
+    <p></p>
+        <form class="form-horizontal" ng-submit="submitReport(newReport)" name="formNewReport" novalidate>
+            <div class="form-group">
+                <label for="aluno" class="col-xs-3 control-label">Student: </label>
+                <div class="col-xs-9">
+                    <p class="form-control-static">{{newReport.student}}</p>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="turma" class="col-xs-3 control-label">Class: </label>
+                <div class="col-xs-9">
+                    <p class="form-control-static">{{newReport.team}}</p>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="turma" class="col-xs-3 control-label">Subject: </label>
+                <div class="col-xs-9">
+                    <p class="form-control-static">{{newReport.subject}}</p>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="turma" class="col-xs-3 control-label">Hour: </label>
+                <div class="col-xs-9">
+                    <p class="form-control-static">{{newReport.hour}}</p>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="tipo" class="col-xs-3 control-label">Type: </label>
+                <div class="col-xs-9">
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo" value="MA" ng-model="newReport.type" required> MA
+                    </label>
+                    
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo" value="BH" ng-model="newReport.type" required> BH
+                    </label>
+                    
+                    <label class="radio-inline">
+                        <input type="radio" name="tipo" value="SR" ng-model="newReport.type" required> SR
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="descricao" class="col-xs-3 control-label">Description: </label>
+                <div class="col-xs-9">
+                    <textarea class="form-control" name="conteudo" ng-model="newReport.description"></textarea>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-9">
+                    <button type="button" class="btn btn-default" ng-click="closeThisDialog()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="formNewReport.$invalid">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

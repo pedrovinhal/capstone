@@ -1,0 +1,55 @@
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a ui-sref="app">Classes</a></li>                    
+    <li><a ui-sref="app">{{team.name}}</a></li>                    
+    <li class="active">Student List</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">    
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Student list</h3>
+                </div>
+                
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Number</th>
+                                <th>Name</th>
+                                <th>Types total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="student in students | orderBy: 'number'">
+                                <td><img ng-src="{{student.foto | defaultUser: './../images/avatar.jpg'}}" alt="" class="img-circle" width="40px"></td>
+                                <!--<td></td>-->
+                                <th>{{student.number}}</th>
+                                <td>{{student.name}}</td>
+                                <td>
+                                    <p>
+                                        AB: <b> {{student.totalSums.AB}}</b>&nbsp; &nbsp; &nbsp;
+                                        LA: <b class="font-14"> {{student.totalSums.LA}}</b>&nbsp; &nbsp; &nbsp;
+                                        MA: <b class="font-14"> {{student.totalSums.MA}}</b>&nbsp; &nbsp; &nbsp;
+                                        BH: <b class="font-14"> {{student.totalSums.BH}}</b>&nbsp; &nbsp; &nbsp;
+                                        SR: <b class="font-14"> {{student.totalSums.SR}}</b>
+                                    </p>
+                                </td>
+                                <td><a ui-sref="app.student_dashboard({id: student._id})" type="button"><span class="fa fa-bar-chart-o icons-team"></span></a></td>
+                            </tr>
+                        </tbody>
+                    </table>                                
+                </div>
+            </div>
+            <!-- END STRIPED TABLE SAMPLE -->
+        </div>
+        </div>
+    </div>
+</div>

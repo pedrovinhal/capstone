@@ -1,0 +1,52 @@
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a ui-sref="app">Classes</a></li>                    
+    <li><a ui-sref="app">{{lessons[0].team.name}}</a></li>                    
+    <li class="active">Lessons</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Lesson list <small> {{lessons[0].team.name}}</small></h3>
+                </div>
+                
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Hour</th>
+                                <th>Subject</th>
+                                <th>Absent</th>
+                                <th>Late</th>
+                                <th>Material</th>
+                                <th>Behavior</th>
+                                <th>Study Room</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="lesson in lessons | orderBy: '-order'">
+                                <td>{{lesson.hour}}</td>
+                                <td>{{lesson.subject.name}}</td>
+                                <td>{{lesson.sums.AB}}</td>
+                                <td>{{lesson.sums.LA}}</td>
+                                <td>{{lesson.sums.MA}}</td>
+                                <td>{{lesson.sums.BH}}</td>
+                                <td>{{lesson.sums.SR}}</td>
+                                <td><a ui-sref="app.single_lesson({name: lesson.team.name, id: lesson._id})" type="button"><span class="fa fa-folder-open icons-team"></span></a></td>
+                            </tr>
+                        </tbody>
+                    </table>                                
+                </div>
+            </div>
+            <!-- END STRIPED TABLE SAMPLE -->
+        </div>
+        </div>
+    </div>
+</div>
